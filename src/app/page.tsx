@@ -3,6 +3,8 @@ import Title from "@/components/Title";
 import Description from "@/components/Description";
 import Instructors from "@/components/Instructors";
 import CourseLayout from "@/components/CourseLayout";
+import WhatYouWillLearn from "@/components/WhatYouWillLearn";
+import AboutCourse from "@/components/AboutCourse";
 export default async function Home() {
   const data = await fetchCourseData();
   const { title, description, sections } = data.data;
@@ -16,15 +18,23 @@ export default async function Home() {
     short_description,
   } = values[0];
   const courseOrganization = sections.find((item) => item.type === "features");
-  const { name: courseOrganizationTitle, values: courseLayoutItems } = courseOrganization;
+  const { name: courseOrganizationTitle, values: courseLayoutItems } =
+    courseOrganization;
+  const whatLearn = sections.find((item) => item.type === "pointers");
+  const { name: whatLearnTitle, values: whatLearnItems } = whatLearn;
+  const aboutCourse = sections.find((item) => item.type === "about");
+  const { name: aboutCourseTitle, values: aboutCourseItems } = aboutCourse;
 
   return (
-    <main className="flex flex-col-reverse lg:flex-row w-full">
+    <main className="flex flex-col-reverse lg:flex-row w-full ">
       {/* Left Side */}
-      <div className="w-full lg:w-3/5 p-4 bg-gray-100">
-        <div className="space-y-4">
-          <Title title={title} />
-          <Description des={description} />
+      <div className="w-full lg:w-3/5 bg-gray-100">
+        <div>
+          <section className=" bg-black p-6 md:p-10">
+            <Title title={title} />
+            <Description des={description} />
+          </section>
+
           <Instructors
             sectionTitle={instructorSectionTitle}
             instructorName={instructorName}
@@ -32,7 +42,15 @@ export default async function Home() {
             instructorDetails={instructorDetails}
             shortDescription={short_description}
           />
-          <CourseLayout sectionTitle={courseOrganizationTitle} courseLayoutItems={courseLayoutItems} />
+          <CourseLayout
+            sectionTitle={courseOrganizationTitle}
+            courseLayoutItems={courseLayoutItems}
+          />
+          <WhatYouWillLearn
+            sectionTitle={whatLearnTitle}
+            learnItems={whatLearnItems}
+          />
+          <AboutCourse sectionTitle={aboutCourseTitle} aboutItems={aboutCourseItems} />
         </div>
       </div>
 
