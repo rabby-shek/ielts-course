@@ -1,3 +1,16 @@
+export interface InstructorProps {
+  sectionTitle?: string;
+  instructorName?: string;
+  instructorPhoto?: string;
+  instructorDetails?: string;
+  shortDescription?: string;
+}
+export interface TitleProps {
+  title?: string;
+}
+export interface DescriptionProps {
+  des?: string;
+}
 export interface Medium {
   type: string;
   url: string;

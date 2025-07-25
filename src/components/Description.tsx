@@ -1,11 +1,8 @@
-import React from 'react'
+import React from "react";
+import { DescriptionProps } from "@/types";
+import HtmlRenderer from "./HtmlRenderer";
+const Description = ({ des = "Description" }: DescriptionProps) => {
+  return <HtmlRenderer html={des} />;
+};
 
-const Description = () => {
-  return (
-    <div>
-      course description
-    </div>
-  )
-}
-
-export default Description
+export default Description;
