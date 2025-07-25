@@ -6,8 +6,10 @@ export async function fetchCourseData(lang: string = "bn") {
         "X-TENMS-SOURCE-PLATFORM": "web",
         Accept: "application/json",
       },
+      next: { revalidate: 60 },
     }
   );
+
   if (!response.ok) throw new Error("Failed to fetch");
-  return response.json;
+  return response.json();
 }
