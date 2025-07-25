@@ -2,15 +2,21 @@ import { fetchCourseData } from "@/utils/fetchCourseData";
 import Title from "@/components/Title";
 import Description from "@/components/Description";
 import Instructors from "@/components/Instructors";
+import CourseLayout from "@/components/CourseLayout";
 export default async function Home() {
   const data = await fetchCourseData();
   const { title, description, sections } = data.data;
 
-  const findInstructor = sections.find(item => item.type === "instructors");
-  const {name: instructorSectionTitle	, values} = findInstructor;
-  const {name: instructorName, image: instructorPhoto, description: instructorDetails, short_description	} = values[0];
- 
-  
+  const findInstructor = sections.find((item) => item.type === "instructors");
+  const { name: instructorSectionTitle, values } = findInstructor;
+  const {
+    name: instructorName,
+    image: instructorPhoto,
+    description: instructorDetails,
+    short_description,
+  } = values[0];
+  const courseOrganization = sections.find((item) => item.type === "features");
+  const { name: courseOrganizationTitle, values: courseLayoutItems } = courseOrganization;
 
   return (
     <main className="flex flex-col-reverse lg:flex-row w-full">
@@ -19,7 +25,14 @@ export default async function Home() {
         <div className="space-y-4">
           <Title title={title} />
           <Description des={description} />
-          <Instructors sectionTitle={instructorSectionTitle} instructorName={instructorName} instructorPhoto={instructorPhoto} instructorDetails={instructorDetails} shortDescription={short_description} />
+          <Instructors
+            sectionTitle={instructorSectionTitle}
+            instructorName={instructorName}
+            instructorPhoto={instructorPhoto}
+            instructorDetails={instructorDetails}
+            shortDescription={short_description}
+          />
+          <CourseLayout sectionTitle={courseOrganizationTitle} courseLayoutItems={courseLayoutItems} />
         </div>
       </div>
 
