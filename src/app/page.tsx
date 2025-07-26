@@ -5,58 +5,75 @@ import Instructors from "@/components/Instructors";
 import CourseLayout from "@/components/CourseLayout";
 import WhatYouWillLearn from "@/components/WhatYouWillLearn";
 import AboutCourse from "@/components/AboutCourse";
-export default async function Home() {
-  const data = await fetchCourseData();
-  const { title, description, sections } = data.data;
+import GroupJoinEngagement from "@/components/GroupJoinEngagement";
 
-  const findInstructor = sections.find((item) => item.type === "instructors");
-  const { name: instructorSectionTitle, values } = findInstructor;
+export default async function Home() {
+  const { data } = await fetchCourseData();
+  const { title, description, sections } = data;
+
+  const findSection = (type: string) => sections.find((item) => item.type === type);
+
+  const instructorSection = findSection("instructors");
+  const instructorSectionTitle = instructorSection?.name || "";
+  const instructor = instructorSection?.values?.[0] || {};
   const {
     name: instructorName,
     image: instructorPhoto,
     description: instructorDetails,
     short_description,
-  } = values[0];
-  const courseOrganization = sections.find((item) => item.type === "features");
-  const { name: courseOrganizationTitle, values: courseLayoutItems } =
-    courseOrganization;
-  const whatLearn = sections.find((item) => item.type === "pointers");
-  const { name: whatLearnTitle, values: whatLearnItems } = whatLearn;
-  const aboutCourse = sections.find((item) => item.type === "about");
-  const { name: aboutCourseTitle, values: aboutCourseItems } = aboutCourse;
+  } = instructor;
+
+  const courseLayoutSection = findSection("features");
+  const courseOrganizationTitle = courseLayoutSection?.name || "";
+  const courseLayoutItems = courseLayoutSection?.values || [];
+
+  const whatLearnSection = findSection("pointers");
+  const whatLearnTitle = whatLearnSection?.name || "";
+  const whatLearnItems = whatLearnSection?.values || [];
+
+  const aboutCourseSection = findSection("about");
+  const aboutCourseTitle = aboutCourseSection?.name || "";
+  const aboutCourseItems = aboutCourseSection?.values || [];
+
+  const groupEngagementItems = findSection("group_join_engagement")?.values || [];
 
   return (
-    <main className="flex flex-col-reverse lg:flex-row w-full ">
+    <main className="flex flex-col-reverse lg:flex-row w-full">
       {/* Left Side */}
       <div className="w-full lg:w-3/5 bg-gray-100">
-        <div>
-          <section className=" bg-black p-6 md:p-10">
-            <Title title={title} />
-            <Description des={description} />
-          </section>
+        <section className="bg-black p-6 md:p-10">
+          <Title title={title} />
+          <Description des={description} />
+        </section>
 
-          <Instructors
-            sectionTitle={instructorSectionTitle}
-            instructorName={instructorName}
-            instructorPhoto={instructorPhoto}
-            instructorDetails={instructorDetails}
-            shortDescription={short_description}
-          />
-          <CourseLayout
-            sectionTitle={courseOrganizationTitle}
-            courseLayoutItems={courseLayoutItems}
-          />
-          <WhatYouWillLearn
-            sectionTitle={whatLearnTitle}
-            learnItems={whatLearnItems}
-          />
-          <AboutCourse sectionTitle={aboutCourseTitle} aboutItems={aboutCourseItems} />
-        </div>
+        <Instructors
+          sectionTitle={instructorSectionTitle}
+          instructorName={instructorName}
+          instructorPhoto={instructorPhoto}
+          instructorDetails={instructorDetails}
+          shortDescription={short_description}
+        />
+
+        <CourseLayout
+          sectionTitle={courseOrganizationTitle}
+          courseLayoutItems={courseLayoutItems}
+        />
+
+        <GroupJoinEngagement groupEngagementItems={groupEngagementItems} />
+
+        <WhatYouWillLearn
+          sectionTitle={whatLearnTitle}
+          learnItems={whatLearnItems}
+        />
+
+        <AboutCourse
+          sectionTitle={aboutCourseTitle}
+          aboutItems={aboutCourseItems}
+        />
       </div>
 
       {/* Right Side */}
       <div className="w-full lg:w-2/5 p-4 bg-white">
-        {/* Top Right Section */}
         <div className="space-y-4 mb-8">
           <h2 className="text-xl font-bold">Right Top Section</h2>
           {[...Array(10)].map((_, i) => (
@@ -66,7 +83,6 @@ export default async function Home() {
           ))}
         </div>
 
-        {/* Bottom Right Sticky Section */}
         <div className="sticky top-0">
           <div className="bg-black text-white p-4 rounded shadow">
             <h2 className="text-lg font-semibold">Right Bottom Sticky</h2>

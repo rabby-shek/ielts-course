@@ -13,7 +13,7 @@ const Instructors = ({
   return (
     <section className="bg-white dark:bg-gray-950 py-12 px-6 md:px-10 max-w-5xl mx-auto">
       {sectionTitle && (
-        <h2 className="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white mb-10 text-center">
+        <h2 className="text-xl md:text-2xl font-bold text-gray-900 dark:text-white mb-10 text-center">
           {sectionTitle}
         </h2>
       )}
@@ -35,7 +35,7 @@ const Instructors = ({
         <div className="flex-1 text-center md:text-left">
           {/* Instructor Name */}
           {instructorName && (
-            <h3 className="text-2xl md:text-3xl font-semibold text-gray-900 dark:text-white">
+            <h3 className="text-xl md:text-2xl font-semibold text-gray-900 dark:text-white">
               {instructorName}
             </h3>
           )}
