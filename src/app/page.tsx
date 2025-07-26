@@ -7,12 +7,14 @@ import WhatYouWillLearn from "@/components/WhatYouWillLearn";
 import AboutCourse from "@/components/AboutCourse";
 import GroupJoinEngagement from "@/components/GroupJoinEngagement";
 import CourseIncludes from "@/components/CourseIncludes";
+import MediaPreview from "@/components/MediaPreview";
 
 export default async function Home() {
   const { data } = await fetchCourseData();
-  const { title, description, sections, checklist } = data;
+  const { title, description, sections, checklist, media } = data;
 
-  const findSection = (type: string) => sections.find((item) => item.type === type);
+  const findSection = (type: string) =>
+    sections.find((item) => item.type === type);
 
   const instructorSection = findSection("instructors");
   const instructorSectionTitle = instructorSection?.name || "";
@@ -36,7 +38,8 @@ export default async function Home() {
   const aboutCourseTitle = aboutCourseSection?.name || "";
   const aboutCourseItems = aboutCourseSection?.values || [];
 
-  const groupEngagementItems = findSection("group_join_engagement")?.values || [];
+  const groupEngagementItems =
+    findSection("group_join_engagement")?.values || [];
 
   return (
     <main className="flex flex-col-reverse lg:flex-row w-full">
@@ -76,12 +79,7 @@ export default async function Home() {
       {/* Right Side */}
       <div className="w-full lg:w-2/5 p-4 bg-white">
         <div className="space-y-4 mb-8">
-          <h2 className="text-xl font-bold">Right Top Section</h2>
-          {[...Array(10)].map((_, i) => (
-            <div key={i} className="bg-gray-100 p-2 rounded shadow">
-              Right top content {i + 1}
-            </div>
-          ))}
+          <MediaPreview mediaPreview={media} />
         </div>
 
         <div className="sticky top-5">
