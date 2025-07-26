@@ -6,10 +6,11 @@ import CourseLayout from "@/components/CourseLayout";
 import WhatYouWillLearn from "@/components/WhatYouWillLearn";
 import AboutCourse from "@/components/AboutCourse";
 import GroupJoinEngagement from "@/components/GroupJoinEngagement";
+import CourseIncludes from "@/components/CourseIncludes";
 
 export default async function Home() {
   const { data } = await fetchCourseData();
-  const { title, description, sections } = data;
+  const { title, description, sections, checklist } = data;
 
   const findSection = (type: string) => sections.find((item) => item.type === type);
 
@@ -83,10 +84,10 @@ export default async function Home() {
           ))}
         </div>
 
-        <div className="sticky top-0">
-          <div className="bg-black text-white p-4 rounded shadow">
-            <h2 className="text-lg font-semibold">Right Bottom Sticky</h2>
-            <p>This section sticks when reaching top while scrolling.</p>
+        <div className="sticky top-5">
+          <div className="p-4 rounded shadow">
+            <h2 className="text-lg font-semibold pb-4">এই কোর্সে যা থাকছে</h2>
+            <CourseIncludes courseIncludes={checklist} />
           </div>
         </div>
       </div>
