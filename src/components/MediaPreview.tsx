@@ -7,6 +7,7 @@ import {
   FaChevronRight,
   FaCamera,
 } from "react-icons/fa";
+import CTAButton from "./CTAButton";
 
 interface Media {
   name: string;
@@ -44,7 +45,7 @@ const MediaPreview = ({ mediaPreview }: MediaProps) => {
   const offerPriceValue = 500;
   const savings = mainPriceValue - offerPriceValue;
   return (
-    <div className="w-full">
+    <section className="w-full">
       {/* Main Preview */}
       <div className="relative w-full aspect-video rounded-md overflow-hidden mb-4">
         <Image
@@ -125,16 +126,8 @@ const MediaPreview = ({ mediaPreview }: MediaProps) => {
           Save ৳ {savings}
         </span>
       </div>
-
-      <a
-        href="#"
-        className="inline-block mt-3 bg-green-600 hover:bg-green-700 text-white font-semibold px-4 py-2 rounded transition"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        কোর্সটি কিনুন
-      </a>
-    </div>
+      <CTAButton Btntext="কোর্সটি কিনুন" />
+    </section>
   );
 };
 
