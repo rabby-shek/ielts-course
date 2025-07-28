@@ -45,6 +45,9 @@ export default async function Home() {
   const FAQSection = findSection("faq");
   const FAQTitle = FAQSection?.name || "";
   const FAQItems = FAQSection?.values || [];
+  const WStudentsSaySection = findSection("testimonials");
+  const WStudentsSayTitle = WStudentsSaySection?.name || "";
+  const WStudentsSayItems = WStudentsSaySection?.values || [];
 
   const groupEngagementItems =
     findSection("group_join_engagement")?.values || [];
@@ -87,6 +90,7 @@ export default async function Home() {
           features={courseFeaturesItems}
         />
         <FrequentlyAskedQuestions sectionTitle={FAQTitle} faqItems={FAQItems} />
+       
       </div>
 
       {/* Right Side */}
