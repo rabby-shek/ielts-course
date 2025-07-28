@@ -54,5 +54,5 @@ export interface SectionType {
   description: string;
   bg_color: string;
   order_idx: number;
-   values: (string | number | boolean | object | null)[];
+  values: (string | number | boolean | object | null)[];
 }

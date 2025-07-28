@@ -43,11 +43,7 @@ const AboutCourse = ({ sectionTitle, aboutItems }: AboutCourseProps) => {
               <button
                 onClick={() => toggleItem(item.id)}
                 className={`w-full flex justify-between items-center px-5 py-4 text-left transition 
-                           ${
-                             isOpen
-                               ? "bg-black text-white"
-                               : ""
-                           }`}
+                           ${isOpen ? "bg-black text-white" : ""}`}
               >
                 <div className="flex items-center gap-2 text-base md:text-lg font-medium ">
                   {item.title && <HtmlRenderer html={item.title} />}
