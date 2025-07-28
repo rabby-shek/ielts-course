@@ -9,6 +9,7 @@ import GroupJoinEngagement from "@/components/GroupJoinEngagement";
 import CourseIncludes from "@/components/CourseIncludes";
 import MediaPreview from "@/components/MediaPreview";
 import CourseFeatures from "@/components/CourseFeatures";
+import FrequentlyAskedQuestions from "@/components/FrequentlyAskedQuestions";
 
 export default async function Home() {
   const { data } = await fetchCourseData();
@@ -41,6 +42,10 @@ export default async function Home() {
   const courseFeaturesSection = findSection("feature_explanations");
   const courseFeaturesTitle = courseFeaturesSection?.name || "";
   const courseFeaturesItems = courseFeaturesSection?.values || [];
+  const FAQSection = findSection("faq");
+  const FAQTitle = FAQSection?.name || "";
+  const FAQItems = FAQSection?.values || [];
+
 
   const groupEngagementItems =
     findSection("group_join_engagement")?.values || [];
@@ -79,6 +84,7 @@ export default async function Home() {
           aboutItems={aboutCourseItems}
         />
         <CourseFeatures sectionTitle={courseFeaturesTitle} features={courseFeaturesItems} />
+        <FrequentlyAskedQuestions sectionTitle={FAQTitle} faqItems={FAQItems} />
       </div>
 
       {/* Right Side */}

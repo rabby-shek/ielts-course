@@ -11,9 +11,9 @@ const Instructors = ({
   shortDescription,
 }: InstructorProps) => {
   return (
-    <section className="bg-white dark:bg-gray-950 py-12 px-6 md:px-10 max-w-5xl mx-auto">
+    <section className="bg-white  py-12 px-6 md:px-10 max-w-5xl mx-auto">
       {sectionTitle && (
-        <h2 className="text-xl md:text-2xl font-bold text-gray-900 dark:text-white mb-10 text-center">
+        <h2 className="text-xl md:text-2xl font-bold  mb-10 text-center">
           {sectionTitle}
         </h2>
       )}
