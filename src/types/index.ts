@@ -48,3 +48,11 @@ export interface CourseData {
   cta_text: CtaText;
   sections: Section[];
 }
+export interface SectionType {
+  type: string;
+  name: string;
+  description: string;
+  bg_color: string;
+  order_idx: number;
+   values: (string | number | boolean | object | null)[];
+}

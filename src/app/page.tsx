@@ -10,13 +10,13 @@ import CourseIncludes from "@/components/CourseIncludes";
 import MediaPreview from "@/components/MediaPreview";
 import CourseFeatures from "@/components/CourseFeatures";
 import FrequentlyAskedQuestions from "@/components/FrequentlyAskedQuestions";
-
+import { SectionType } from "@/types";
 export default async function Home() {
   const { data } = await fetchCourseData();
   const { title, description, sections, checklist, media } = data;
 
   const findSection = (type: string) =>
-    sections.find((item) => item.type === type);
+    sections.find((item: SectionType) => item.type === type);
 
   const instructorSection = findSection("instructors");
   const instructorSectionTitle = instructorSection?.name || "";
@@ -45,7 +45,6 @@ export default async function Home() {
   const FAQSection = findSection("faq");
   const FAQTitle = FAQSection?.name || "";
   const FAQItems = FAQSection?.values || [];
-
 
   const groupEngagementItems =
     findSection("group_join_engagement")?.values || [];
@@ -83,7 +82,10 @@ export default async function Home() {
           sectionTitle={aboutCourseTitle}
           aboutItems={aboutCourseItems}
         />
-        <CourseFeatures sectionTitle={courseFeaturesTitle} features={courseFeaturesItems} />
+        <CourseFeatures
+          sectionTitle={courseFeaturesTitle}
+          features={courseFeaturesItems}
+        />
         <FrequentlyAskedQuestions sectionTitle={FAQTitle} faqItems={FAQItems} />
       </div>
 
